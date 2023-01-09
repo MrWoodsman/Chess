@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="wynik">
+        <div class="score">
+            <h1>CZARNY: <span id="black_score">0</span></h1>
+        </div>
+        <div class="score">
+            <h1>BIAŁY: <span id="white_score">0</span></h1>
+        </div>
+    </section>
+    <div class="board">
+        <div class="box">
+            <div class="pole"><div class="figura black"></div></div>
+            <div class="pole"><div class="figura black"></div></div>
+            <div class="pole"><div class="figura black"></div></div>
+            <div class="pole"><div class="figura black"></div></div>
+            <div class="pole"><div class="figura black"></div></div>
+            <div class="pole"><div class="figura black"></div></div>
+            <div class="pole"><div class="figura black"></div></div>
+            <div class="pole"><div class="figura black"></div></div>
+        </div>
+        <div class="box">
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+        </div>
+        <div class="box">
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+        </div>
+        <div class="box">
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+        </div>
+        <div class="box">
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+        </div>
+        <div class="box">
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+        </div>
+        <div class="box">
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+            <div class="pole"></div>
+        </div>
+        <div class="box">
+            <div class="pole"><div class="figura white"></div></div>
+            <div class="pole"><div class="figura white"></div></div>
+            <div class="pole"><div class="figura white"></div></div>
+            <div class="pole"><div class="figura white"></div></div>
+            <div class="pole"><div class="figura white"></div></div>
+            <div class="pole"><div class="figura white"></div></div>
+            <div class="pole"><div class="figura white"></div></div>
+            <div class="pole"><div class="figura white"></div></div>
+        </div>
+    </div>
+</body>
+    <script>
+        document.querySelectorAll('.figura').forEach((e) => {
+            e.addEventListener('contextmenu',figuraFunction)
+        })
+
+        function figuraFunction(e) {
+            if(document.querySelectorAll('.active').length == 1) { return }    
+                
+                document.querySelectorAll('.figura').forEach((b) => {
+                    b.classList.remove('active')
+                })
+                e.target.classList.add('active')
+                document.querySelectorAll('.figura').forEach((b) => {
+                    b.style.pointerEvents = 'none'
+                })
+            }
+
+        document.querySelectorAll('.pole').forEach((e) => {
+            e.addEventListener('click',(b) => {
+                if(document.querySelectorAll('.active').length == 0) { return }    
+
+                if (b.target.children.length > 0) {
+                    if (b.target.children[0].getAttribute('class').split(" ").includes('white')){
+                        console.warn(1);
+                        document.querySelector('#black_score').innerHTML = parseInt(document.querySelector('#black_score').innerHTML) + 1
+                    } else {
+                        console.warn(2);
+                        document.querySelector('#white_score').innerHTML = parseInt(document.querySelector('#white_score').innerHTML) + 1
+                    }
+                }
+
+                // document.getElementById('1').
+
+                const last = document.querySelectorAll('.active')[0].parentNode.innerHTML;
+                document.querySelectorAll('.active')[0].parentNode.innerHTML = ``
+                b.target.innerHTML = last
+                b.target.children[0].classList.remove('active');
+                b.target.children[0].addEventListener('contextmenu',figuraFunction)
+                // 
+                document.querySelectorAll('.figura').forEach((b) => {
+                    b.style.pointerEvents = 'all'
+                })
+            })
+        })
+    </script>
+</html>

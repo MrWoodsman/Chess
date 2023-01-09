@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.board {
+  display: grid;
+  width: 400px;
+  border: 1px solid black;
+  box-shadow: rgba(51, 51, 51, 0.5) -8px 8px 16px;
+}
+.board .box {
+  display: grid;
+  grid-template-columns: repeat(8, 50px);
+}
+.board .box .pole {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background: white;
+}
+.board .box .pole:nth-child(even) {
+  background: black;
+}
+.board .box:nth-child(even) .pole {
+  width: 50px;
+  height: 50px;
+  background: black;
+}
+.board .box:nth-child(even) .pole:nth-child(even) {
+  background: white;
+}
+
+.pole {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 50;
+}
+
+.figura {
+  cursor: pointer;
+  z-index: 100;
+  position: absolute;
+  z-index: 100;
+  width: 25px;
+  height: 50px;
+  transform: translateY(calc(-50% + 5px));
+}
+
+.black {
+  background: black;
+  border: 2px solid white;
+}
+
+.white {
+  background: white;
+  border: 2px solid black;
+}
+
+.active {
+  -webkit-animation: blink 750ms infinite ease-in-out;
+          animation: blink 750ms infinite ease-in-out;
+}
+
+@-webkit-keyframes blink {
+  50% {
+    background: gold;
+  }
+}
+
+@keyframes blink {
+  50% {
+    background: gold;
+  }
+}
+#wynik {
+  position: absolute;
+  top: 0;
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+}/*# sourceMappingURL=style.css.map */
